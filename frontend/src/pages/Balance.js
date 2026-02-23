@@ -34,21 +34,6 @@ const Balance = () => {
     };
     loadAccounts();
   }, []);
-      setLoading(false);
-    }
-  };
-
-  const fetchBalance = async (accountNumber) => {
-    try {
-      const response = await axios.get(
-        `/api/balance/${accountNumber}`,
-        { withCredentials: true }
-      );
-      setBalance(response.data.balance);
-    } catch (error) {
-      console.error('Failed to fetch balance:', error);
-    }
-  };
 
   const handleAccountChange = (e) => {
     const accountNumber = e.target.value;
