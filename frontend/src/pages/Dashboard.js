@@ -19,12 +19,15 @@ const Dashboard = () => {
       setUser(userRes.data.user);
 
       const accountsRes = await axios.get('/api/accounts', { withCredentials: true });
-      setAccounts(accountsRes.data.accounts);
-
-      const total = accountsRes.data.accounts.reduce((sum, acc) => sum + acc.balance, 0);
-      setTotalBalance(total);
+      if (accountsRes.data && accountsRes.data.accounts) {
+        setAccounts(accountsRes.data.accounts);
+        const total = accountsRes.data.accounts.reduce((sum, acc) => sum + acc.balance, 0);
+        setTotalBalance(total);
+      }
     } catch (error) {
       console.error('Failed to fetch dashboard data:', error);
+      setAccounts([]);
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -32,6 +35,14 @@ const Dashboard = () => {
 
   if (loading) {
     return <Layout><div style={{ padding: '40px', textAlign: 'center' }}>Loading...</div></Layout>;
+  }
+
+  if (!user) {
+    return <Layout><div style={{ padding: '40px', textAlign: 'center', color: 'rgba(255, 255, 255, 0.8)' }}>
+      <h2>Unable to Load Dashboard</h2>
+      <p style={{ marginTop: '10px' }}>Please ensure the backend is deployed and configured correctly.</p>
+      <p style={{ fontSize: '0.9rem', marginTop: '20px', color: 'rgba(255, 255, 255, 0.6)' }}>Backend Status: Check Step 6 of deployment guide</p>
+    </div></Layout>;
   }
 
   return (
