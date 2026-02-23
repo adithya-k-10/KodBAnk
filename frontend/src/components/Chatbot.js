@@ -25,8 +25,9 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
+      const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       const response = await axios.post(
-        '/api/chatbot',
+        `${API_BASE}/api/chatbot`,
         { message: input },
         { withCredentials: true }
       );
