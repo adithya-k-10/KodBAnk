@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "KodBank - Full Stack Banking Application Frontend",
   "proxy": "http://localhost:5000",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",

@@ -308,7 +308,6 @@ https://kodbank-xxxxx.vercel.app
 **Root Directory:** `./backend` ← **SELECT THIS**  
 **Framework Preset:** "Other" or "Node.js"  
 **Build Command:** `npm install` (or leave empty)  
-**Development Command:** `node server.js`  
 **Install Command:** `npm install`
 
 ### 6.2: Keep Default Settings
