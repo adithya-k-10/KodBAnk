@@ -8,25 +8,6 @@ const Balance = () => {
   const [balance, setBalance] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchAccounts = async () => {
-    try {
-      const response = await axios.get('/api/accounts', { withCredentials: true });
-      setAccounts(response.data.accounts);
-      if (response.data.accounts.length > 0) {
-        setSelectedAccount(response.data.accounts[0].account_number);
-        fetchBalance(response.data.accounts[0].account_number);
-      }
-    } catch (error) {
-      console.error('Failed to fetch accounts:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchAccounts();
-  }, []);
-
   const fetchBalance = async (accountNumber) => {
     try {
       const response = await axios.get(`/api/accounts/${accountNumber}`, { withCredentials: true });
@@ -48,6 +29,11 @@ const Balance = () => {
       } catch (error) {
         console.error('Failed to fetch accounts:', error);
       } finally {
+        setLoading(false);
+      }
+    };
+    loadAccounts();
+  }, []);
       setLoading(false);
     }
   };
