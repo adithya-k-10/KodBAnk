@@ -54,7 +54,7 @@ const Transfer = () => {
     setSubmitting(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         '/api/transfer',
         {
           from_account: fromAccount,

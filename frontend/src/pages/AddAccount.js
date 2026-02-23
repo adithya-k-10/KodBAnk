@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Layout from '../components/Layout';
 
@@ -16,7 +16,7 @@ const AddAccount = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         '/api/accounts',
         {
           account_name: accountName,
